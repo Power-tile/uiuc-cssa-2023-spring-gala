@@ -21,7 +21,7 @@ def get_open_id():
     }
 
     url = "https://api.weixin.qq.com/sns/jscode2session"
-    r = requests.get(url = url, body = body)
+    r = requests.get(url = url, params = body)
 
     return r.json()
 
