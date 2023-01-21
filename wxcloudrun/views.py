@@ -27,7 +27,7 @@ from wxcloudrun.response import make_succ_empty_response, make_succ_response, ma
 
 @app.route('/api/openid', methods=['GET'])
 def get_open_id():
-    headers = request.headers()
+    headers = request.headers
 
     if 'X-WX-OPENID' not in headers:
         return headers
