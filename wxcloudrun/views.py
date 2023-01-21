@@ -16,7 +16,7 @@ def get_open_id():
     body = {
         "appid": "wxa597ddbd2a913a60",
         "secret": "22a1275c26a18e3fb01d58ca116d07c6",
-        "js_code": params['action'],
+        "js_code": params['code'],
         "grant_type": "authorization_code"
     }
 
