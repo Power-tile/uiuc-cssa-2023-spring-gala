@@ -4,26 +4,35 @@ from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
-import requests
+# import requests
 
-@app.route('/api/openid', methods=['POST'])
-def get_open_id():
-    params = request.get_json()
+# @app.route('/api/openid', methods=['POST'])
+# def get_open_id():
+#     params = request.get_json()
 
-    if 'code' not in params:
-        return make_err_response('需要login code')
+#     if 'code' not in params:
+#         return make_err_response('需要login code')
     
-    body = {
-        "appid": "wxa597ddbd2a913a60",
-        "secret": "22a1275c26a18e3fb01d58ca116d07c6",
-        "js_code": params['code'],
-        "grant_type": "authorization_code"
-    }
+#     body = {
+#         "appid": "wxa597ddbd2a913a60",
+#         "secret": "22a1275c26a18e3fb01d58ca116d07c6",
+#         "js_code": params['code'],
+#         "grant_type": "authorization_code"
+#     }
 
-    url = "https://api.weixin.qq.com/sns/jscode2session"
-    r = requests.get(url = url, params = body)
+#     url = "https://api.weixin.qq.com/sns/jscode2session"
+#     r = requests.get(url = url, params = body)
 
-    return r.json()
+#     return r.json()
+
+@app.route('/api/openid', methods=['GET'])
+def get_open_id():
+    headers = request.headers()
+
+    if 'X-WX-OPENID' not in headers:
+        return headers
+    
+    return headers['X-WX-OPENID']
 
 
 @app.route('/')
